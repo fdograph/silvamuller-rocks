@@ -1,5 +1,5 @@
 <script lang="ts">
-    import { onMount } from 'svelte';
+    import { onMount, tick } from 'svelte';
 
     let container: HTMLDivElement;
     let lines = [];
@@ -11,7 +11,9 @@
     const angle = -30;
     const ra = degree2radian(angle);
 
-    const render = () => {
+    const render = async () => {
+        await tick();
+
         const height = container.offsetHeight;
         const width = container.offsetWidth;
         const count = Math.round(height * 0.3);
