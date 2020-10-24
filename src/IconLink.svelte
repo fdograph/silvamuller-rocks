@@ -1,14 +1,14 @@
 <script lang="ts">
-    import Github from './icons/Github.svelte.ts';
-    import Linkedin from './icons/Linkedin.svelte.ts';
-    import Npm from './icons/Npm.svelte.ts';
+    import Github from './icons/Github.svelte';
+    import Linkedin from './icons/Linkedin.svelte';
+    import Npm from './icons/Npm.svelte';
 
     export let type: 'github' | 'linkedin' | 'npm';
-    export let url: string;
+    export let linkUrl: string;
     export let title: string;
 </script>
 
-<a href="{url}" title="{title}" target="_blank">
+<a href="{linkUrl}" title="{title}" target="_blank">
     <span>
         {#if type === 'github'}
             <Github />

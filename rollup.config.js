@@ -47,7 +47,6 @@ export default {
 				css.write('bundle.css');
 			},
 			preprocess: sveltePreprocess(),
-			customElement: true,
 		}),
 
 		// If you have external dependencies installed from
@@ -57,9 +56,9 @@ export default {
 		// https://github.com/rollup/plugins/tree/master/packages/commonjs
 		resolve({
 			browser: true,
-			dedupe: ['svelte']
+			// dedupe: ['svelte']
 		}),
-		commonjs(),
+		commonjs({ extensions: ['.js', '.ts', '.svelte'] }),
 		typescript({
 			sourceMap: !production,
 			inlineSources: !production
@@ -75,7 +74,7 @@ export default {
 
 		// If we're building for production (npm run build
 		// instead of npm run dev), minify
-		// production && terser()
+		production && terser()
 	],
 	watch: {
 		clearScreen: false
