@@ -1,10 +1,10 @@
-<script>
+<script lang="ts">
     import { onMount } from 'svelte';
 
     const hueStart = 250;
     const hueEnd = 180;
 
-    let container;
+    let container: HTMLDivElement;
     let lines = [];
 
     const render = () => {

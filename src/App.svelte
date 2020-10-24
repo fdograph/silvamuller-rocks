@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
     import Background from './Background.svelte';
     import Content from "./Content.svelte";
 </script>
