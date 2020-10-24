@@ -6,7 +6,7 @@
     "dev": "rollup -c -w",
     "start": "sirv public",
     "validate": "svelte-check",
-    "deploy-ghp": "gh-pages -d build"
+    "deploy-ghp": "gh-pages -d public"
   },
   "devDependencies": {
     "@rollup/plugin-commonjs": "^14.0.0",
