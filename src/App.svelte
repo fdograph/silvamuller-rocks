@@ -1,6 +1,6 @@
 <script lang="ts">
-    import Background from './Background.svelte';
-    import Content from "./Content.svelte";
+    import Background from './background.svelte';
+    import Content from "./content.svelte";
 </script>
 
 <main>
