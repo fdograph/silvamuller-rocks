@@ -8,9 +8,9 @@
         <h2>Fullstack developer</h2>
     </div>
     <div class="socials">
-        <IconLink type="github" title="Check out my Github!" url="https://github.com/fdograph" />
-        <IconLink type="linkedin" title="LinkedIn Profile" url="https://www.linkedin.com/in/fernando-silva-muller" />
-        <IconLink type="npm" title="Npm profile" url="https://www.npmjs.com/~fdograph" />
+        <IconLink type="github" title="Check out my Github!" linkUrl="https://github.com/fdograph" />
+        <IconLink type="linkedin" title="LinkedIn Profile" linkUrl="https://www.linkedin.com/in/fernando-silva-muller" />
+        <IconLink type="npm" title="Npm profile" linkUrl="https://www.npmjs.com/~fdograph" />
     </div>
 </div>
 
