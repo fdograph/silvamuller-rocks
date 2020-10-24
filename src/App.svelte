@@ -5,8 +5,8 @@
 
     type ThemeName = 'dark-lines' | 'yellow';
     const themes: ThemeName[] = ['dark-lines', 'yellow'];
-
-    let currentTheme: ThemeName = 'dark-lines';
+    const randomIndex = Math.round(Math.random() * (themes.length - 1));
+    let currentTheme: ThemeName = themes[randomIndex];
 
     const flipTheme = () => {
         const currIndex = themes.indexOf(currentTheme);
