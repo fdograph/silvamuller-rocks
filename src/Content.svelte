@@ -1,4 +1,4 @@
-<script lang="ts">
+<script>
     import IconLink from "./IconLink.svelte";
 </script>
 

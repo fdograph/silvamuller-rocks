@@ -1,11 +1,11 @@
-<script lang="ts">
+<script>
     import Github from './icons/Github.svelte';
     import Linkedin from './icons/Linkedin.svelte';
     import Npm from './icons/Npm.svelte';
 
-    export let type: 'github' | 'linkedin' | 'npm';
-    export let linkUrl: string;
-    export let title: string;
+    export let type;
+    export let linkUrl;
+    export let title;
 </script>
 
 <a href="{linkUrl}" title="{title}" target="_blank">
