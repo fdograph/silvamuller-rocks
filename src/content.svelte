@@ -47,16 +47,16 @@
     h2 {
         font-size: 28px;
         font-weight: 400;
-        animation-delay: 600ms;
+        animation-delay: 500ms;
     }
 
     .socials {
         margin-top: 18px;
-        background: #ededed;
+        background: var(--fg-color);
         padding: .5em 0.75em;
         border-radius: 1em;
         display: inline-flex;
-        animation-delay: 1200ms;
+        animation-delay: 700ms;
     }
 
     .socials > :global(a):not(:first-child) {

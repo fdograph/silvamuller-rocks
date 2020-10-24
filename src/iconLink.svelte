@@ -26,7 +26,7 @@
     }
 
     a:hover span > :global(svg)  {
-        fill: hsl(255deg, 100%, 50%);
+        fill: var(--action-color);
         transform: scale(1.2);
     }
 
@@ -42,7 +42,7 @@
         flex: 1;
         width: 100%;
         height: 100%;
-        fill: hsl(0deg, 0%, 5%);
+        fill: var(--bg-color);
         transform: scale(1);
         transition: all 200ms ease;
     }

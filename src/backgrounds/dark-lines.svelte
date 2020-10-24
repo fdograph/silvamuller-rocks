@@ -50,7 +50,6 @@
 
     div {
         position: absolute;
-        z-index: -1;
         pointer-events: none;
         display: flex;
         width: 100%;
