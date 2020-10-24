@@ -1,5 +1,5 @@
 <script lang="ts">
-    import { onMount } from 'svelte';
+    import { onMount, tick } from 'svelte';
 
     const hueStart = 250;
     const hueEnd = 180;
@@ -7,7 +7,9 @@
     let container: HTMLDivElement;
     let lines = [];
 
-    const render = () => {
+    const render = async () => {
+        await tick();
+
         const height = container.offsetHeight;
         const count = Math.round(height * 0.05);
         const hueStep = Math.abs(hueStart - hueEnd) / count;
