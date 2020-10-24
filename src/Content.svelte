@@ -1,5 +1,5 @@
 <script lang="ts">
-    import IconLink from "./IconLink.svelte";
+    import IconLink from "./IconLink.svelte.ts";
 </script>
 
 <div class="container">

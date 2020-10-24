@@ -10,7 +10,7 @@ const production = !process.env.ROLLUP_WATCH;
 
 function serve() {
 	let server;
-	
+
 	function toExit() {
 		if (server) server.kill(0);
 	}
@@ -47,6 +47,7 @@ export default {
 				css.write('bundle.css');
 			},
 			preprocess: sveltePreprocess(),
+			customElement: true,
 		}),
 
 		// If you have external dependencies installed from
@@ -74,7 +75,7 @@ export default {
 
 		// If we're building for production (npm run build
 		// instead of npm run dev), minify
-		production && terser()
+		// production && terser()
 	],
 	watch: {
 		clearScreen: false

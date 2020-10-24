@@ -1,7 +1,7 @@
 <script lang="ts">
-    import Github from './icons/Github.svelte';
-    import Linkedin from './icons/Linkedin.svelte';
-    import Npm from './icons/Npm.svelte';
+    import Github from './icons/Github.svelte.ts';
+    import Linkedin from './icons/Linkedin.svelte.ts';
+    import Npm from './icons/Npm.svelte.ts';
 
     export let type: 'github' | 'linkedin' | 'npm';
     export let url: string;
