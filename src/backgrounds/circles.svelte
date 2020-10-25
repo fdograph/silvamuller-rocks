@@ -6,13 +6,13 @@
 
     const randomBetween = (min: number, max: number) => Math.round(Math.random() * max) + min;
     const lowerBounds = (d: number) => d * 0.75 * -1;
-    const upperBounds = (d: number) => d * 1.75;
+    const upperBounds = (d: number) => d * 1.9;
 
     const render = async () => {
         const height = container.offsetHeight;
         const width = container.offsetWidth;
         const base = width > height ? width : height;
-        const count = Math.round(base * 0.025);
+        const count = Math.round(base * 0.03);
 
         circles = [...new Array(count)].map((v, i) => {
             const x1 = randomBetween(lowerBounds(width), upperBounds(width));
