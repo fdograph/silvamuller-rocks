@@ -1,10 +1,11 @@
 <script lang="ts">
     import DarkLines from './backgrounds/dark-lines.svelte';
     import Yellow from './backgrounds/yellow.svelte';
+    import Circles from './backgrounds/circles.svelte';
     import Content from "./content.svelte";
 
-    type ThemeName = 'dark-lines' | 'yellow';
-    const themes: ThemeName[] = ['dark-lines', 'yellow'];
+    type ThemeName = 'dark-lines' | 'yellow' | 'circles';
+    const themes: ThemeName[] = ['dark-lines', 'yellow', 'circles'];
     const randomIndex = Math.round(Math.random() * (themes.length - 1));
     let currentTheme: ThemeName = themes[randomIndex];
 
@@ -19,8 +20,10 @@
     <div class="background">
         {#if currentTheme === 'dark-lines'}
             <DarkLines />
-        {:else}
+        {:else if currentTheme === 'yellow'}
             <Yellow />
+        {:else}
+            <Circles />
         {/if}
     </div>
 
@@ -44,6 +47,12 @@
 
     main.yellow {
         --bg-color: hsl(45 100% 50%);
+        --fg-color: hsl(0, 0%, 15%);
+        --action-color: hsl(255 100% 50%);
+    }
+
+    main.circles {
+        --bg-color: hsl(330 100% 45%);
         --fg-color: hsl(0, 0%, 15%);
         --action-color: hsl(255 100% 50%);
     }
