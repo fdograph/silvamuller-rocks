@@ -18,7 +18,7 @@
         const width = container.offsetWidth;
         const count = Math.round(height * 0.3);
         const distance = width * 3;
-        const x1 = width * -1;
+        const x1 = width / 2 * -1;
 
         lines = [...new Array(count)].map((v, i) => {
             const l = Math.floor(Math.random() * 400) + 20;
