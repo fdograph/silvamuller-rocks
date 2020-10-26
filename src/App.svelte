@@ -2,10 +2,12 @@
     import DarkLines from './backgrounds/dark-lines.svelte';
     import Yellow from './backgrounds/yellow.svelte';
     import Circles from './backgrounds/circles.svelte';
+    import Waves from './backgrounds/waves.svelte';
     import Content from "./content.svelte";
 
-    type ThemeName = 'dark-lines' | 'yellow' | 'circles';
-    const themes: ThemeName[] = ['dark-lines', 'yellow', 'circles'];
+    const themes = ['dark-lines', 'yellow', 'circles', 'waves'];
+    type ThemeName = typeof themes[number];
+
     const randomIndex = Math.round(Math.random() * (themes.length - 1));
     let currentTheme: ThemeName = themes[randomIndex];
 
@@ -22,8 +24,10 @@
             <DarkLines />
         {:else if currentTheme === 'yellow'}
             <Yellow />
-        {:else}
+        {:else if currentTheme === 'circles'}
             <Circles />
+        {:else if currentTheme === 'waves'}
+            <Waves />
         {/if}
     </div>
 
@@ -35,6 +39,7 @@
 <style>
     :root {
         --bg-color: hsl(0deg, 0%, 5%);
+        --bg-color-transparent: hsl(0deg, 0%, 5%, 0);
         --fg-color: #ededed;
         --action-color: hsl(255deg, 100%, 50%);
     }
@@ -54,6 +59,12 @@
     main.circles {
         --bg-color: hsl(330 100% 45%);
         --fg-color: hsl(0, 0%, 15%);
+        --action-color: hsl(255 100% 50%);
+    }
+
+    main.waves {
+        --bg-color: hsl(65 100% 55% / 1);
+        --fg-color: hsl(220deg 100% 55%);
         --action-color: hsl(255 100% 50%);
     }
 
