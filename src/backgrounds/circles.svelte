@@ -1,10 +1,10 @@
 <script lang="ts">
     import { onMount } from 'svelte';
+    import { randomBetween } from "./helpers";
 
     let container: HTMLDivElement;
     let circles = [];
 
-    const randomBetween = (min: number, max: number) => Math.round(Math.random() * max) + min;
     const lowerBounds = (d: number) => d * 0.75 * -1;
     const upperBounds = (d: number) => d * 1.9;
 

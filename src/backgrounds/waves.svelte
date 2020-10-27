@@ -94,10 +94,9 @@
         stroke: var(--fg-color);
         transform: translateZ(0) translateY(0) translateX(0);
         transform-origin: var(--cx) var(--cy);
-
         animation-name: shakeIt;
         animation-duration: 2000ms;
-        animation-timing-function: cubic-bezier(.76,-0.93,.2,1.95);
+        animation-timing-function: cubic-bezier(0.74, -2.1, 0.12, 2.82);
         animation-direction: alternate;
         animation-fill-mode: both;
         animation-iteration-count: infinite;

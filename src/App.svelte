@@ -3,12 +3,13 @@
     import Yellow from './backgrounds/yellow.svelte';
     import Circles from './backgrounds/circles.svelte';
     import Waves from './backgrounds/waves.svelte';
+    import Spirals from './backgrounds/spirals.svelte';
     import Content from "./content.svelte";
 
-    const themes = ['dark-lines', 'yellow', 'circles', 'waves'];
+    const themes = ['dark-lines', 'yellow', 'circles', 'waves', 'spirals'];
     type ThemeName = typeof themes[number];
 
-    const randomIndex = Math.round(Math.random() * (themes.length - 1));
+    const randomIndex = Math.floor(Math.random() * (themes.length - 1));
     let currentTheme: ThemeName = themes[randomIndex];
 
     const flipTheme = () => {
@@ -28,6 +29,8 @@
             <Circles />
         {:else if currentTheme === 'waves'}
             <Waves />
+        {:else if currentTheme === 'spirals'}
+            <Spirals />
         {/if}
     </div>
 
@@ -65,6 +68,12 @@
     main.waves {
         --bg-color: hsl(65 100% 55% / 1);
         --fg-color: hsl(220deg 100% 55%);
+        --action-color: hsl(255 100% 50%);
+    }
+
+    main.spirals {
+        --bg-color: hsl(12deg 100% 56%);
+        --fg-color: hsl(190 100% 50% / 1);
         --action-color: hsl(255 100% 50%);
     }
 
