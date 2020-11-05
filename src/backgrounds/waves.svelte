@@ -15,8 +15,8 @@
     const render = () => {
         const height = container.offsetHeight;
         const width = container.offsetWidth;
-        const ratio = width > height ? (width / height) : (height / width);
-        const outerRadius = ratio * 22;
+        const base = width > height ? width : height;
+        const outerRadius = 50 * (width / base);
         const gap = outerRadius / 3;
         const innerWidth = width - gap;
         const innerHeight = height - gap;
@@ -33,7 +33,7 @@
             const cx = (blockWidth * col) + (restX / 2);
             const cy = (blockWidth * row) + (restY / 2);
             const radius = innerRadius;
-            const delay = 60 * grid.length * -1;
+            const delay = 60 * (grid.length / 2) * -1;
             const size = blockWidth;
 
             grid.push({
@@ -68,7 +68,7 @@
 <style>
     @keyframes shakeIt {
         to {
-            transform: translateZ(0) translateY(2%) translateX(2%);
+            transform: translateZ(0) translateY(-2%) translateX(2%);
         }
     }
 
@@ -95,7 +95,7 @@
         transform: translateZ(0) translateY(0) translateX(0);
         transform-origin: var(--cx) var(--cy);
         animation-name: shakeIt;
-        animation-duration: 2000ms;
+        animation-duration: 4000ms;
         animation-timing-function: cubic-bezier(0.74, -2.1, 0.12, 2.82);
         animation-direction: alternate;
         animation-fill-mode: both;

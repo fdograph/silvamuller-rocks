@@ -9,7 +9,7 @@
     const themes = ['dark-lines', 'yellow', 'circles', 'waves', 'spirals'];
     type ThemeName = typeof themes[number];
 
-    const randomIndex = Math.floor(Math.random() * (themes.length - 1));
+    const randomIndex = 3 || Math.floor(Math.random() * (themes.length - 1));
     let currentTheme: ThemeName = themes[randomIndex];
 
     const flipTheme = () => {
