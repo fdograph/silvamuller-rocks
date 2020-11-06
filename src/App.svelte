@@ -86,8 +86,8 @@
     }
 
     main.spirals {
-        --bg-color: hsl(0 0% 20% / 1);
-        --fg-color: hsl(140 100% 56% / 1);
+        --bg-color: hsl(0deg 0% 10%);
+        --fg-color: hsl(100 100% 55% / 1);
         --action-color: hsl(255 100% 50%);
     }
 
