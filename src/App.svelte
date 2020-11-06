@@ -7,7 +7,14 @@
     import Bullets from './backgrounds/bullets.svelte';
     import Content from "./content.svelte";
 
-    const themes = ['dark-lines', 'yellow', 'circles', 'waves', 'spirals', 'bullets'];
+    const themes = [
+        'dark-lines',
+        'yellow',
+        'circles',
+        'waves',
+        // 'spirals',
+        'bullets'
+    ];
     type ThemeName = typeof themes[number];
 
     const randomIndex = Math.floor(Math.random() * (themes.length - 1));
@@ -82,7 +89,7 @@
 
     main.bullets {
         --bg-color: hsl(0deg 100% 59%);
-        --fg-color: hsl(200deg 30% 35%);
+        --fg-color: hsl(200deg 36% 32%);
         --action-color: hsl(255 100% 50%);
     }
 
