@@ -83,7 +83,7 @@
 <style>
     @keyframes spiralRotate {
         to {
-            transform: scale(1, .4) translateZ(0) rotateZ(-360deg);
+            transform: scale(1, .4) translateZ(0) rotateZ(-900deg);
         }
     }
 
@@ -115,7 +115,7 @@
         transform: scale(1, .4) translateZ(0) rotateZ(0);
         transform-origin: var(--x) var(--y);
         animation-name: spiralRotate;
-        animation-duration: 10000ms;
+        animation-duration: 20000ms;
         animation-delay: 0;
         animation-timing-function: linear;
         animation-iteration-count: infinite;
@@ -126,6 +126,7 @@
     svg path.odd {
         /*animation-duration: 3000ms;*/
         /*animation-delay: -1000ms;*/
+        animation-duration: 10000ms;
     }
 
     svg path.mirror {
