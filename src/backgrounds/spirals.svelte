@@ -1,11 +1,7 @@
 <script lang="ts">
-    import { getPath, randomBetween } from "./helpers";
+    import { getPath } from "./helpers.ts";
+    import type { Point } from "./helpers.ts";
     import { onMount } from "svelte";
-
-    interface Point {
-        x: number;
-        y: number;
-    }
 
     interface Spiral {
         path: string;
