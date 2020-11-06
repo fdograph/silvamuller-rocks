@@ -5,6 +5,7 @@
     import Waves from './backgrounds/waves.svelte';
     import Spirals from './backgrounds/spirals.svelte';
     import Bullets from './backgrounds/bullets.svelte';
+    import Solar from './backgrounds/solar.svelte';
     import Content from "./content.svelte";
 
     const themes = [
@@ -14,6 +15,7 @@
         'waves',
         'bullets',
         'spirals',
+        'solar',
     ];
     type ThemeName = typeof themes[number];
 
@@ -41,6 +43,8 @@
             <Spirals />
         {:else if currentTheme === 'bullets'}
             <Bullets />
+        {:else if currentTheme === 'solar'}
+            <Solar />
         {/if}
     </div>
 
@@ -88,8 +92,14 @@
     }
 
     main.bullets {
-        --bg-color: hsl(0deg 100% 59%);
-        --fg-color: hsl(200deg 36% 32%);
+        --bg-color: hsl(240 100% 30% / 1);
+        --fg-color: hsl(0deg 0% 100%);
+        --action-color: hsl(255 100% 50%);
+    }
+
+    main.solar {
+        --bg-color: hsl(0deg 100% 60%);
+        --fg-color: hsl(200 50% 30% / 1);
         --action-color: hsl(255 100% 50%);
     }
 
