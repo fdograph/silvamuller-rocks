@@ -15,7 +15,7 @@ function pStr (point: Point): string {
     return `${point.x},${point.y} `;
 }
 
-export function getPath (
+export function buildSpiral (
     center: Point,
     startRadius: number,
     spacePerLoop: number,

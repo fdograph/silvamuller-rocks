@@ -1,7 +1,7 @@
 <script lang="ts">
-    import { getPath } from "./helpers.ts";
-    import type { Point } from "./helpers.ts";
-    import { onMount } from "svelte";
+    import type {Point} from "./helpers.ts";
+    import {buildSpiral} from "./helpers.ts";
+    import {onMount} from "svelte";
 
     interface Spiral {
         path: string;
@@ -10,7 +10,7 @@
         center: Point;
     }
 
-    const getSpiralPath = (center: Point, distance: number) => getPath(
+    const getSpiralPath = (center: Point, distance: number) => buildSpiral(
         center,
         0,
         distance,
@@ -21,18 +21,18 @@
     const count = 3;
 
     let container: HTMLDivElement;
-
     let spirals: Spiral[] = [];
 
     const render = () => {
         spirals = [];
         const height = container.offsetHeight;
         const width = container.offsetWidth;
-        const d = height / 10;
-        const dash = Math.log10(width * 300) * (Math.log10(width) * 50);
+        const d = height / 8;
+        // const dash = Math.log10(width * 300) * (Math.log10(width) * 50);
+        const dash = 5000;
 
-        const ax = width * -0.15;
-        const ay = height * 0.5;
+        const ax = 0;
+        const ay = 0;
         const centerA = { x: ax, y: ay };
 
         const spiralA = {
@@ -43,10 +43,7 @@
         };
         spirals.push(spiralA);
 
-        const bx =  width * 1.15;
-        const by = height * 0.5;
-        const centerB = { x: bx, y: by };
-
+        const centerB = { x: width, y: height };
         const spiralB = {
             center: centerB,
             isOdd: true,
@@ -69,7 +66,6 @@
                 style="
                     --x: {spiral.center.x}px;
                     --y: {spiral.center.y}px;
-                    --dash: {spiral.dash};
                 "
             />
             <path
@@ -78,7 +74,6 @@
                 style="
                     --x: {spiral.center.x}px;
                     --y: {spiral.center.y}px;
-                    --dash: {spiral.dash};
                 "
             />
         {/each}
@@ -88,13 +83,13 @@
 <style>
     @keyframes spiralRotate {
         to {
-            transform: translateZ(0) rotateZ(-360deg);
+            transform: scale(1, .4) translateZ(0) rotateZ(-360deg);
         }
     }
 
     @keyframes spiralRotateMirror {
         to {
-            transform: scale(-1, -1) translateZ(0) rotateZ(-360deg);
+            transform: scale(-1, .4) translateZ(0) rotateZ(360deg);
         }
     }
 
@@ -117,25 +112,26 @@
         fill: none;
         stroke-width: 1px;
         stroke: var(--fg-color);
-        transform: translateZ(0) rotateZ(0);
+        transform: scale(1, .4) translateZ(0) rotateZ(0);
         transform-origin: var(--x) var(--y);
         animation-name: spiralRotate;
-        animation-duration: 30000ms;
+        animation-duration: 10000ms;
         animation-delay: 0;
         animation-timing-function: linear;
         animation-iteration-count: infinite;
-        stroke-dasharray: var(--dash);
+        animation-direction: alternate-reverse;
+        /*stroke-dasharray: var(--dash);*/
     }
 
     svg path.odd {
         /*animation-duration: 3000ms;*/
-        animation-delay: -1000ms;
+        /*animation-delay: -1000ms;*/
     }
 
     svg path.mirror {
         --x: 0px;
         --y: 0px;
-        transform: scale(-1, -1) translateZ(0) rotateZ(0);
+        transform: scale(-1, .4) translateZ(0) rotateZ(0);
         transform-origin: var(--x) var(--y);
         animation-name: spiralRotateMirror;
     }

@@ -12,8 +12,8 @@
         'yellow',
         'circles',
         'waves',
-        // 'spirals',
-        'bullets'
+        'bullets',
+        'spirals',
     ];
     type ThemeName = typeof themes[number];
 
