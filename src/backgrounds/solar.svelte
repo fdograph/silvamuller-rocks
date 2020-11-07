@@ -120,7 +120,7 @@
                                 begin="{target.delay}ms"
                                 dur="{target.speed}ms"
                                 calcMode="spline"
-                                keyTimes="0 ; 1"
+                                keyTimes="0;1"
                                 keySplines="1 0 1 1"
                         />
                         <animate
@@ -131,7 +131,7 @@
                                 begin="{target.delay}ms"
                                 dur="{target.speed}ms"
                                 calcMode="spline"
-                                keyTimes="0 ; 1"
+                                keyTimes="0;1"
                                 keySplines="1 0 1 1"
                         />
 
