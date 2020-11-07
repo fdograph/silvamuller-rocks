@@ -73,7 +73,7 @@
         const width = container.offsetWidth;
         const base = width > height ? width : height;
         const rayLength = Math.sqrt(Math.pow(width, 2) + Math.pow(height, 2));
-        const count = Math.round(base * 0.005);
+        const count = Math.round(base * 0.007);
 
         targets = [...new Array(count)].map((v, i) => {
             const target = randomPoint(width, height);
@@ -84,7 +84,7 @@
                 target,
                 speed,
                 delay,
-                rays: sunRays(target, rayLength, 60),
+                rays: sunRays(target, rayLength, 50),
             }
         });
     };
@@ -105,7 +105,7 @@
                     --delay: {target.delay}ms;
                 "
             >
-                {#each target.rays as ray}
+                {#each target.rays as ray, index}
                     <line
                             x1="{target.target.x}"
                             y1="{target.target.y}"
