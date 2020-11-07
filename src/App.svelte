@@ -9,12 +9,12 @@
     import Content from "./content.svelte";
 
     const themes = [
+        'spirals',
         'dark-lines',
         'yellow',
         'circles',
         'waves',
         'bullets',
-        'spirals',
         'solar',
     ];
     type ThemeName = typeof themes[number];
