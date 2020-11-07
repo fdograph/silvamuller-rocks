@@ -19,7 +19,7 @@
     ];
     type ThemeName = typeof themes[number];
 
-    const randomIndex = Math.floor(Math.random() * (themes.length - 1));
+    const randomIndex = 6 || Math.floor(Math.random() * (themes.length - 1));
     let currentTheme: ThemeName = themes[randomIndex];
 
     const flipTheme = () => {

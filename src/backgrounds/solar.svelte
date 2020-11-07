@@ -77,7 +77,7 @@
 
         targets = [...new Array(count)].map((v, i) => {
             const target = randomPoint(width, height);
-            const speed = randomBetween(3500, 10000);
+            const speed = randomBetween(5000, 15000);
             const delay = randomBetween(0, 1000);
 
             return {
@@ -112,23 +112,27 @@
                             x2="{target.target.x}"
                             y2="{target.target.y}"
                     >
-
-
                         <animate
                                 repeatCount="indefinite"
                                 attributeName="x1"
                                 from="{target.target.x}"
-                                to="{ray.a.x}"
+                                to="{ray.b.x}"
                                 begin="{target.delay}ms"
                                 dur="{target.speed}ms"
+                                calcMode="spline"
+                                keyTimes="0 ; 1"
+                                keySplines="1 0 1 1"
                         />
                         <animate
                                 repeatCount="indefinite"
                                 attributeName="y1"
                                 from="{target.target.y}"
-                                to="{ray.a.y}"
+                                to="{ray.b.y}"
                                 begin="{target.delay}ms"
                                 dur="{target.speed}ms"
+                                calcMode="spline"
+                                keyTimes="0 ; 1"
+                                keySplines="1 0 1 1"
                         />
 
                         <animate
@@ -181,7 +185,7 @@
         transform: translateZ(0) rotateZ(0);
         transform-origin: var(--cx) var(--cy);
         animation-name: spin;
-        animation-duration: 100000ms;
+        animation-duration: 70000ms;
         animation-delay: var(--delay);
         animation-timing-function: linear;
         animation-iteration-count: infinite;
