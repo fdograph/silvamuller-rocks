@@ -1,7 +1,39 @@
+import queryString from "query-string";
+
+export const getParams = <T>(location: Location) => {
+    const params = queryString.parse(location.search) as unknown;
+    return params ? params as T : undefined;
+};
+
 export interface Point {
     x: number;
     y: number;
 }
+
+export interface LineCoords {
+    a: Point,
+    b: Point,
+}
+
+export const degree2radian = (a: number) => a * 0.017453292519;
+export const calculateX = (x: number, l: number, a: number) => x + l * Math.cos(a);
+export const calculateY = (y: number, l: number, a: number) => y + l * Math.sin(a);
+export const createPoint = (x: number, y: number): Point => ({ x, y });
+export const randomPoint = (w: number, h: number): Point => createPoint(
+    randomBetween(0, w),
+    randomBetween(0, h)
+);
+export const projectPoint = (point: Point, l: number, a: number): Point => createPoint(
+    calculateX(point.x, l, degree2radian(a)),
+    calculateY(point.y, l, degree2radian(a))
+);
+export const createLine = (origin: Point, length: number, angle: number = 0): LineCoords => ({
+    a: origin,
+    b: projectPoint(origin, length, angle),
+});
+
+
+export const randomBetween = (min: number, max: number) => Math.round(Math.random() * max) + min;
 
 function lineIntersection (m1: number, b1: number, m2: number, b2: number): Point {
     if (m1 === m2) {
@@ -85,5 +117,3 @@ export function buildSpiral (
 
     return path;
 }
-
-export const randomBetween = (min: number, max: number) => Math.round(Math.random() * max) + min;

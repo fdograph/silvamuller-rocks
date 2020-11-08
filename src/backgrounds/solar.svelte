@@ -1,12 +1,7 @@
 <script lang="ts">
     import { onMount } from 'svelte';
-    import { randomBetween } from "./helpers";
-    import type { Point } from "./helpers.ts";
-
-    interface LineCoords {
-        a: Point,
-        b: Point,
-    }
+    import {createLine, randomBetween, randomPoint} from "../helpers";
+    import type { Point, LineCoords } from "../helpers";
 
     let container: HTMLDivElement;
 
@@ -17,50 +12,6 @@
         rays: LineCoords[];
     }
     let targets: TargetProps[] = [];
-
-    const degree2radian = (a: number) => a * 0.017453292519;
-    const calculateX = (x: number, l: number, a: number) => x + l * Math.cos(a);
-    const calculateY = (y: number, l: number, a: number) => y + l * Math.sin(a);
-    const createPoint = (x: number, y: number): Point => ({ x, y });
-    const randomPoint = (w: number, h: number): Point => createPoint(
-        randomBetween(0, w),
-        randomBetween(0, h)
-    );
-    const projectPoint = (point: Point, l: number, a: number): Point => createPoint(
-        calculateX(point.x, l, degree2radian(a)),
-        calculateY(point.y, l, degree2radian(a))
-    );
-    const createLine = (origin: Point, length: number, angle: number = 0): LineCoords => ({
-        a: origin,
-        b: projectPoint(origin, length, angle),
-    });
-
-    const buildRays = (target: Point, distance: number , length: number, angle: number) => {
-        const mirrorAngle = 180 - angle;
-
-        const topLeftPointAngle = mirrorAngle * -1;
-        const topLeftPoint = projectPoint(target, distance, topLeftPointAngle);
-        const topLeftRay = createLine(topLeftPoint, length, topLeftPointAngle);
-
-        const topRightPointAngle = angle * -1;
-        const topRightPoint = projectPoint(target, distance, topRightPointAngle);
-        const topRightRay = createLine(topRightPoint, length, topRightPointAngle);
-
-        const bottomLeftPointAngle = mirrorAngle;
-        const bottomLeftPoint = projectPoint(target, distance, bottomLeftPointAngle);
-        const bottomLeftRay = createLine(bottomLeftPoint, length, bottomLeftPointAngle);
-
-        const bottomRightPointAngle = angle;
-        const bottomRightPoint = projectPoint(target, distance, bottomRightPointAngle);
-        const bottomRightRay = createLine(bottomRightPoint, length, bottomRightPointAngle);
-
-        return [
-            topLeftRay,
-            topRightRay,
-            bottomLeftRay,
-            bottomRightRay
-        ];
-    };
 
     const sunRays = (center: Point, length: number, count: number, angleStart: number = 0, angleEnd: number = 360) => {
         const angleLength = angleEnd - angleStart;
@@ -134,7 +85,6 @@
                                 keyTimes="0;1"
                                 keySplines="1 0 1 1"
                         />
-
                         <animate
                                 repeatCount="indefinite"
                                 attributeName="x2"
@@ -189,7 +139,6 @@
         animation-delay: var(--delay);
         animation-timing-function: linear;
         animation-iteration-count: infinite;
-
     }
 
     svg line {

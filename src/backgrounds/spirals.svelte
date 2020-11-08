@@ -1,6 +1,6 @@
 <script lang="ts">
-    import type {Point} from "./helpers.ts";
-    import {buildSpiral} from "./helpers.ts";
+    import type {Point} from "../helpers.ts";
+    import {buildSpiral} from "../helpers.ts";
     import {onMount} from "svelte";
 
     interface Spiral {

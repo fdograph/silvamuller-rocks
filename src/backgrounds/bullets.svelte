@@ -1,12 +1,7 @@
 <script lang="ts">
     import { onMount } from 'svelte';
-    import { randomBetween } from "./helpers";
-    import type { Point } from "./helpers.ts";
-
-    interface LineCoords {
-        a: Point,
-        b: Point,
-    }
+    import {createLine, projectPoint, randomBetween, randomPoint} from "../helpers";
+    import type { Point, LineCoords } from "../helpers.ts";
 
     let container: HTMLDivElement;
 
@@ -17,23 +12,6 @@
         rays: LineCoords[];
     }
     let targets: TargetProps[] = [];
-
-    const degree2radian = (a: number) => a * 0.017453292519;
-    const calculateX = (x: number, l: number, a: number) => x + l * Math.cos(a);
-    const calculateY = (y: number, l: number, a: number) => y + l * Math.sin(a);
-    const createPoint = (x: number, y: number): Point => ({ x, y });
-    const randomPoint = (w: number, h: number): Point => createPoint(
-        randomBetween(0, w),
-        randomBetween(0, h)
-    );
-    const projectPoint = (point: Point, l: number, a: number): Point => createPoint(
-        calculateX(point.x, l, degree2radian(a)),
-        calculateY(point.y, l, degree2radian(a))
-    );
-    const createLine = (origin: Point, length: number, angle: number = 0): LineCoords => ({
-        a: origin,
-        b: projectPoint(origin, length, angle),
-    });
 
     const buildRays = (target: Point, distance: number , length: number, angle: number) => {
         const mirrorAngle = 180 - angle;

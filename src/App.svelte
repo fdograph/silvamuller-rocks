@@ -6,7 +6,9 @@
     import Spirals from './backgrounds/spirals.svelte';
     import Bullets from './backgrounds/bullets.svelte';
     import Solar from './backgrounds/solar.svelte';
+    import Cubes from './backgrounds/cubes.svelte';
     import Content from "./content.svelte";
+    import { getParams } from "./helpers";
 
     const themes = [
         'spirals',
@@ -16,11 +18,14 @@
         'waves',
         'bullets',
         'solar',
+        'cubes',
     ];
     type ThemeName = typeof themes[number];
 
-    const randomIndex = Math.floor(Math.random() * (themes.length - 1));
-    let currentTheme: ThemeName = themes[randomIndex];
+    const params = getParams<{theme: ThemeName}>(window.location);
+    const urlTheme = params.theme && themes.indexOf(params.theme) !== -1 ? themes.indexOf(params.theme) : null;
+    const defaultIndex = urlTheme !== null ? urlTheme : Math.floor(Math.random() * (themes.length - 1));
+    let currentTheme: ThemeName = themes[defaultIndex];
 
     const flipTheme = () => {
         const currIndex = themes.indexOf(currentTheme);
@@ -45,6 +50,8 @@
             <Bullets />
         {:else if currentTheme === 'solar'}
             <Solar />
+        {:else if currentTheme === 'cubes'}
+            <Cubes />
         {/if}
     </div>
 
@@ -103,6 +110,12 @@
         --action-color: hsl(255 100% 50%);
     }
 
+    main.cubes {
+        --bg-color: hsl(0deg 0% 10%);
+        --fg-color: hsl(330 100% 50% / 1);
+        --action-color: hsl(255 100% 50%);
+    }
+
     main {
         display: flex;
         flex-direction: column;
@@ -117,6 +130,7 @@
         display: flex;
         width: 100%;
         height: 100%;
+        z-index: 1;
     }
 
     button {

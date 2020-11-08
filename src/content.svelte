@@ -25,6 +25,8 @@
     .container {
         flex: 1;
         padding: 4vw 6vw;
+        z-index: 10;
+        transform: translateZ(0);
     }
 
     h1, h2, .socials {

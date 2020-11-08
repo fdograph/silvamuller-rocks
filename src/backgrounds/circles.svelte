@@ -1,6 +1,6 @@
 <script lang="ts">
     import { onMount } from 'svelte';
-    import { randomBetween } from "./helpers";
+    import { randomBetween } from "../helpers";
 
     let container: HTMLDivElement;
     let circles = [];
