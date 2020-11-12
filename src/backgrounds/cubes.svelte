@@ -67,7 +67,7 @@
         --cx: 100px;
         --cy: 100px;
         --cube-size: 100px;
-        --delay: 0ms;
+        --delay: 60ms;
         --speed: 30s;
         position: absolute;
         top: calc(var(--cy) - (var(--cube-size) / 2));
