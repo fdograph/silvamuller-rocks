@@ -5,6 +5,8 @@ import livereload from 'rollup-plugin-livereload';
 import { terser } from 'rollup-plugin-terser';
 import sveltePreprocess from 'svelte-preprocess';
 import typescript from '@rollup/plugin-typescript';
+import postCssImport from 'postcss-import';
+import autoprefixer from 'autoprefixer';
 
 const production = !process.env.ROLLUP_WATCH;
 
@@ -46,7 +48,13 @@ export default {
 			css: css => {
 				css.write('bundle.css');
 			},
-			preprocess: sveltePreprocess(),
+			preprocess: sveltePreprocess({
+				postcss: {
+					plugins: [
+						postCssImport, autoprefixer
+					],
+				}
+			}),
 		}),
 
 		// If you have external dependencies installed from

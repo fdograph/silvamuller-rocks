@@ -46,7 +46,7 @@
     {/each}
 </div>
 
-<style>
+<style type="text/postcss">
     @keyframes cubeSpin {
         to {
             transform: rotateX(-15deg) rotateY(360deg) translateZ(0);
