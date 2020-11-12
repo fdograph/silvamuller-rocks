@@ -16,8 +16,9 @@
         const height = container.offsetHeight;
         const width = container.offsetWidth;
         const center = createPoint(width/3 * 2, height/3 * 2);
+        const minSize = width * 0.035;
         const maxSize = Math.sqrt(Math.pow(width, 2) + Math.pow(height, 2));
-        cubes = concentricCubes(center, 50, maxSize, 8);
+        cubes = concentricCubes(center, minSize, maxSize, 8);
     };
 
     onMount(render);
@@ -32,7 +33,7 @@
                     --cube-size: {cube.size}px;
                     --cx: {cube.center.x}px;
                     --cy: {cube.center.y}px;
-                    --delay: {(index + 1) * 500}ms;
+                    --delay: {(index + 1) * 500 - 500}ms;
                     --speed: {(index + 1) * 4000}ms;
                 "
         >
@@ -49,10 +50,10 @@
 <style type="text/postcss">
     @keyframes cubeSpin {
         0% {
-            transform: rotateX(-15deg) rotateY(0) rotateZ(0) translateZ(0);
+            transform: rotateX(0deg) rotateY(0) rotateZ(0) translateZ(0);
         }
         100% {
-            transform: rotateX(-15deg) rotateY(360deg) rotateZ(0) translateZ(0);
+            transform: rotateX(360deg) rotateY(360deg) rotateZ(0) translateZ(0);
         }
     }
 
@@ -70,7 +71,7 @@
         --cx: 100px;
         --cy: 100px;
         --cube-size: 100px;
-        --delay: 60ms;
+        --delay: 1ms;
         --speed: 30s;
         position: absolute;
         top: calc(var(--cy) - (var(--cube-size) / 2));
@@ -80,7 +81,7 @@
         height: var(--cube-size);
         transform-style: preserve-3d;
         backface-visibility: visible;
-        transform: rotateX(-15deg) rotateY(0) rotateZ(0) translateZ(0);
+        transform: rotateX(0) rotateY(0) rotateZ(0) translateZ(0);
         animation-name: cubeSpin;
         animation-duration: var(--speed);
         animation-timing-function: linear;
