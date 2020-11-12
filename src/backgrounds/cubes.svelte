@@ -52,7 +52,7 @@
             transform: rotateX(-15deg) rotateY(0) rotateZ(0) translateZ(0);
         }
         100% {
-            transform: rotateX(-15deg) rotateY(360deg) translateZ(0);
+            transform: rotateX(-15deg) rotateY(360deg) rotateZ(0) translateZ(0);
         }
     }
 
