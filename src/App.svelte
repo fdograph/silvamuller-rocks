@@ -111,7 +111,7 @@
     }
 
     main.cubes {
-        --bg-color: hsl(0deg 0% 10%);
+        --bg-color: hsl(0 0% 80% / 1);
         --fg-color: hsl(330 100% 50% / 1);
         --action-color: hsl(255 100% 50%);
     }
