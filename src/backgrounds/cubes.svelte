@@ -9,7 +9,7 @@
     const concentricCubes = (center: Point, min: number, max: number, count: number) => {
         const diff = max - min;
         const step = Math.ceil(diff / count);
-        return [...new Array(count)].map((v, i) => ({ center, size: min + (step * i) }));
+        return [...new Array(count)].map((v, i) => ({ center, size: step + (step * i) }));
     };
 
     const render = async () => {
@@ -33,7 +33,7 @@
                     --cube-size: {cube.size}px;
                     --cx: {cube.center.x}px;
                     --cy: {cube.center.y}px;
-                    --speed: {(index + 1) * 4000}ms;
+                    --speed: {(index + 1) * 5000}ms;
                 "
         >
             <div class="side front"></div>
@@ -97,6 +97,7 @@
         height: var(--cube-size);
         backface-visibility: visible;
         border: 1px solid var(--fg-color);
+        border-radius: 100%;
         /*background: var(--bg-color);*/
     }
 
