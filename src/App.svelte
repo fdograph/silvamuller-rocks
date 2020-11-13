@@ -11,7 +11,7 @@
     import { getParams } from "./helpers";
 
     const themes = [
-        'spirals',
+        // 'spirals',
         'dark-lines',
         'yellow',
         'circles',
@@ -111,8 +111,8 @@
     }
 
     main.cubes {
-        --bg-color: hsl(0 0% 80% / 1);
-        --fg-color: hsl(330 100% 50% / 1);
+        --bg-color: hsl(185 100% 20% / 1);
+        --fg-color: hsl(50 100% 50% / 1);
         --action-color: hsl(255 100% 50%);
     }
 
