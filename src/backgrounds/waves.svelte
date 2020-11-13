@@ -18,8 +18,8 @@
         const base = width > height ? width : height;
         const outerRadius = 50 * (width / base);
         const gap = outerRadius / 3;
-        const innerWidth = width - gap;
-        const innerHeight = height - gap;
+        const innerWidth = width;
+        const innerHeight = height;
         const innerRadius = outerRadius + gap * 2;
         const blockWidth = (outerRadius * 2) - (gap / 2);
         const xCount = Math.floor(innerWidth / blockWidth);
