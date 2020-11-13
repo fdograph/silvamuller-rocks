@@ -1,25 +1,42 @@
 <script lang="ts">
     import { onMount, tick } from 'svelte';
 
-    const hueStart = 250;
-    const hueEnd = 180;
+    const hueRange = 70;
 
     let container: HTMLDivElement;
     let lines = [];
+    let hue = 0;
+    let frame;
 
-    const render = async () => {
-        await tick();
+    const nextHue = (currentHue: number) => {
+        if(currentHue === 360) {
+            return 0;
+        }
 
-        const height = container.offsetHeight;
+        return currentHue + 1;
+    };
+    const buildLines = (height: number) => {
         const count = Math.round(height * 0.05);
-        const hueStep = Math.abs(hueStart - hueEnd) / count;
+        const hueStep = hueRange / count;
+
+        hue = nextHue(hue);
 
         lines = [...new Array(count)].map((v, i) => ({
             index: i,
             y: (100 / count) * i,
-            color: `hsl(${(hueStart + (hueStep * i))}deg, 100%, 50%)`,
+            color: `hsl(${(hue + (hueStep * i))}deg, 100%, 50%)`,
             delay: (100 / count) * i * i,
         }));
+    };
+
+
+    const render = async () => {
+        await tick();
+
+        clearInterval(frame);
+        frame = setInterval(() => {
+            buildLines(container.offsetHeight);
+        }, 1000 / 60);
     };
 
     onMount(render);
