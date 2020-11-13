@@ -29,13 +29,12 @@
         }));
     };
 
-
-    const render = async () => {
-        await tick();
+    const render = () => {
+        const height = container.offsetHeight;
 
         clearInterval(frame);
         frame = setInterval(() => {
-            buildLines(container.offsetHeight);
+            buildLines(height);
         }, 1000 / 60);
     };
 
