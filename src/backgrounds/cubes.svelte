@@ -20,7 +20,7 @@
     }));
   };
 
-  const render = async () => {
+  const render = () => {
     const height = container.offsetHeight;
     const width = container.offsetWidth;
     const center = createPoint((width / 3) * 2, (height / 3) * 2);
@@ -29,7 +29,13 @@
     cubes = concentricCubes(center, minSize, maxSize, 8);
   };
 
-  onMount(render);
+  const deferRender = () => {
+    setTimeout(() => {
+      requestAnimationFrame(render);
+    }, 1);
+  };
+
+  onMount(deferRender);
 </script>
 
 <style type="text/postcss">

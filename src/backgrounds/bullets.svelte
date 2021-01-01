@@ -84,7 +84,13 @@
     });
   };
 
-  onMount(render);
+  const deferRender = () => {
+    setTimeout(() => {
+      requestAnimationFrame(render);
+    }, 1);
+  };
+
+  onMount(deferRender);
 </script>
 
 <style>

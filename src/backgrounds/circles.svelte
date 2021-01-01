@@ -1,42 +1,40 @@
 <script lang="ts">
   import { onMount } from 'svelte';
-  import { randomBetween } from '../helpers';
+  import { randomBetween, describeArc } from '../helpers';
 
   let container: HTMLDivElement;
-  let circles = [];
+  let arcs = [];
 
-  const lowerBounds = (d: number) => d * 0.75 * -1;
-  const upperBounds = (d: number) => d * 1.9;
+  const lowerBounds = (d: number) => d * 0.25 * -1;
+  const upperBounds = (d: number) => d * 1.25;
 
-  const render = async () => {
+  const render = () => {
     const height = container.offsetHeight;
     const width = container.offsetWidth;
     const base = width > height ? width : height;
     const count = Math.round(base * 0.03);
 
-    circles = [...new Array(count)].map((v, i) => {
-      const x1 = randomBetween(lowerBounds(width), upperBounds(width));
-      const y1 = randomBetween(lowerBounds(height), upperBounds(height));
-
+    arcs = [...new Array(count)].map((n, i) => {
+      const x = randomBetween(lowerBounds(width), upperBounds(width));
+      const y = randomBetween(lowerBounds(height), upperBounds(height));
       const radius = randomBetween(base / 3, base * 1.5);
-      const circunf = Math.ceil(Math.PI * 2 * radius);
-      const segment = circunf / 1.5;
+      const angleLength = randomBetween(45, 100);
+
       const speed = randomBetween(4000, 20000);
       const delay = randomBetween(0, 500);
+      const path = describeArc(x, y, radius, angleLength * -1, angleLength);
 
-      return {
-        radius,
-        circunf,
-        segment,
-        x1,
-        y1,
-        speed,
-        delay,
-      };
+      return { x, y, radius, speed, delay, path };
     });
   };
 
-  onMount(render);
+  const deferRender = () => {
+    setTimeout(() => {
+      requestAnimationFrame(render);
+    }, 1);
+  };
+
+  onMount(deferRender);
 </script>
 
 <style>
@@ -62,9 +60,7 @@
     backface-visibility: hidden;
   }
 
-  svg circle {
-    --circunf: 0;
-    --segment: 0;
+  svg .arc {
     --cx: 0;
     --cy: 0;
     --speed: 5000ms;
@@ -72,7 +68,6 @@
     fill: none;
     stroke-width: 1px;
     stroke: var(--fg-color);
-    stroke-dasharray: var(--segment), var(--circunf);
     backface-visibility: visible;
     transform: translateZ(0) rotateZ(0deg);
     transform-origin: var(--cx) var(--cy);
@@ -87,19 +82,16 @@
 <svelte:window on:resize={render} />
 <div bind:this={container}>
   <svg>
-    {#each circles as c}
-      <circle
-        cx={c.x1}
-        cy={c.y1}
-        r={c.radius}
+    {#each arcs as arc}
+      <path
+        class="arc"
+        d={arc.path}
         style="
-                    --circunf: {c.circunf};
-                    --cx: {c.x1}px;
-                    --cy: {c.y1}px;
-                    --speed: {c.speed}ms;
-                    --delay: {c.delay}ms;
-                    --segment: {c.segment};
-                " />
+            --cx: {arc.x}px;
+            --cy: {arc.y}px;
+            --speed: {arc.speed}ms;
+            --delay: {arc.delay}ms;
+        " />
     {/each}
   </svg>
 </div>

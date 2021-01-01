@@ -11,9 +11,7 @@
   const angle = -30;
   const ra = degree2radian(angle);
 
-  const render = async () => {
-    await tick();
-
+  const render = () => {
     const height = container.offsetHeight;
     const width = container.offsetWidth;
     const count = Math.round(height * 0.3);
@@ -49,7 +47,13 @@
     });
   };
 
-  onMount(render);
+  const deferRender = () => {
+    setTimeout(() => {
+      requestAnimationFrame(render);
+    }, 1);
+  };
+
+  onMount(deferRender);
 </script>
 
 <style>
