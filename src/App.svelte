@@ -80,9 +80,9 @@
   }
 
   main.cubes {
-    --bg-color: hsl(185 100% 20% / 1);
-    --fg-color: hsl(50 100% 50% / 1);
-    --action-color: hsl(255 100% 50%);
+    --bg-color: hsl(141deg 100% 17%);
+    --fg-color: hsl(0deg 0% 10%);
+    --action-color: hsl(10 100% 50% / 1);
   }
 
   main {
