@@ -97,7 +97,6 @@
   }
 
   .btn-holder {
-    display: flex;
     flex: 0;
   }
 
