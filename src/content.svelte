@@ -44,8 +44,8 @@
   .socials {
     margin-top: 18px;
     background: var(--fg-color);
-    padding: 0.5em 0.75em;
-    border-radius: 1em;
+    padding: 4px 6px;
+    border-radius: 48px;
     display: inline-flex;
     animation-delay: 700ms;
   }
