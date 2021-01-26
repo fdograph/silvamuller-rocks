@@ -63,7 +63,7 @@ function lineIntersection(
     throw new Error('parallel slopes');
   }
   const x = (b2 - b1) / (m1 - m2);
-  return { x: x, y: m1 * x + b1 };
+  return createPoint(x, m1 * x + b1);
 }
 
 function pStr(point: Point): string {
@@ -162,10 +162,10 @@ export function polarToCartesian(
 ): Point {
   const angleInRadians = degree2radian(angleInDegrees);
 
-  return {
-    x: centerX + radius * Math.cos(angleInRadians),
-    y: centerY + radius * Math.sin(angleInRadians),
-  };
+  return createPoint(
+    centerX + radius * Math.cos(angleInRadians),
+    centerY + radius * Math.sin(angleInRadians)
+  );
 }
 
 export function describeArc(

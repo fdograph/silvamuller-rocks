@@ -12,7 +12,6 @@
 
   .container {
     flex: 1;
-    padding: 4vw 6vw;
     z-index: 10;
     transform: translateZ(0);
   }
@@ -49,10 +48,6 @@
     border-radius: 1em;
     display: inline-flex;
     animation-delay: 700ms;
-  }
-
-  .socials > :global(a):not(:first-child) {
-    margin-left: 1.5em;
   }
 </style>
 

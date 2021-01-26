@@ -34,55 +34,46 @@
     --bg-color: hsl(0deg, 0%, 5%);
     --bg-color-transparent: hsl(0deg, 0%, 5%, 0);
     --fg-color: #ededed;
-    --action-color: hsl(255deg, 100%, 50%);
   }
 
   main.dark-lines {
     --bg-color: hsl(0deg, 0%, 5%);
     --fg-color: #ededed;
-    --action-color: hsl(255deg, 100%, 50%);
   }
 
   main.yellow {
     --bg-color: hsl(45 100% 50%);
     --fg-color: hsl(0, 0%, 15%);
-    --action-color: hsl(255 100% 50%);
   }
 
   main.circles {
     --bg-color: hsl(330 100% 45%);
     --fg-color: hsl(0, 0%, 15%);
-    --action-color: hsl(255 100% 50%);
   }
 
   main.waves {
     --bg-color: hsl(65 100% 55% / 1);
     --fg-color: hsl(220deg 100% 55%);
-    --action-color: hsl(255 100% 50%);
   }
 
   main.spirals {
     --bg-color: hsl(0deg 0% 10%);
     --fg-color: hsl(100 100% 55% / 1);
-    --action-color: hsl(255 100% 50%);
   }
 
   main.bullets {
     --bg-color: hsl(240 100% 30% / 1);
     --fg-color: hsl(0deg 0% 100%);
-    --action-color: hsl(255 100% 50%);
   }
 
   main.solar {
     --bg-color: hsl(0deg 100% 60%);
     --fg-color: hsl(200 50% 30% / 1);
-    --action-color: hsl(255 100% 50%);
   }
 
   main.cubes {
     --bg-color: hsl(141deg 100% 17%);
     --fg-color: hsl(0deg 0% 10%);
-    --action-color: hsl(10 100% 50% / 1);
   }
 
   main {
@@ -91,10 +82,13 @@
     height: 100%;
     background: var(--bg-color);
     color: var(--fg-color);
+    padding: 4vw 6vw;
   }
 
   .background {
     position: absolute;
+    top: 0;
+    left: 0;
     pointer-events: none;
     display: flex;
     width: 100%;
@@ -102,20 +96,37 @@
     z-index: 1;
   }
 
-  button {
+  .btn-holder {
     display: flex;
-    align-self: flex-start;
+    flex: 0;
+  }
+
+  button {
+    display: block;
+    position: relative;
     z-index: 10;
-    margin: 0 0 4vw 6vw;
+    cursor: pointer;
     -webkit-appearance: none;
     appearance: none;
     background-color: var(--fg-color);
     color: var(--bg-color);
     border: none;
     padding: 0.5em 0.75em;
+    margin: 0;
     border-radius: 1em;
     line-height: 1;
     font-weight: 600;
+    box-shadow: none;
+    transform: scale(1);
+    transition: all 150ms ease;
+  }
+
+  button:hover,
+  button:active {
+    transform: scale(1.2);
+    background-color: var(--bg-color);
+    color: var(--fg-color);
+    box-shadow: 0 0 1em rgba(0, 0, 0, 0.3);
   }
 </style>
 
@@ -139,8 +150,10 @@
       <Cubes />
     {/if}
   </div>
-
   <Content />
 
-  <button on:click={flipTheme} title="Click me to change the theme">Click me :)</button>
+  <div class="btn-holder">
+    <button on:click={flipTheme} title="Click me to change the theme">Click me
+      :)</button>
+  </div>
 </main>
