@@ -30,6 +30,7 @@
     background: var(--fg-color);
     padding: 5px;
     border-radius: 100em;
+    transition: all 250ms ease;
   }
 
   a:hover span {
