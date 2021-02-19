@@ -14,13 +14,12 @@ jobs:
       - name: Install
         uses: actions/setup-node@v1
         with:
-          node-version: '12.x'
-      - run: npm install
-      - run: npm run build
+          node-version: '14.x'
+      - run: yarn
       - run: git config --global user.name ${{secrets.GH_NAME}}
       - run: git config --global user.email ${{secrets.GH_EMAIL}}
       - run: git remote set-url origin https://${{secrets.GH_ACCESS_TOKEN}}@github.com/${{secrets.GH_USERNAME}}/silvamuller-rocks.git
-      - run: npm run deploy-ghp
+      - run: yarn deploy-ghp
         env:
           CI: true
           NODE_ENV: 'prod'

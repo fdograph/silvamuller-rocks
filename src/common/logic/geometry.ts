@@ -1,23 +1,3 @@
-import queryString from 'query-string';
-
-export const themes = [
-  // 'spirals',
-  'dark-lines',
-  'yellow',
-  'circles',
-  'waves',
-  'bullets',
-  'solar',
-  'cubes',
-];
-
-export type ThemeName = typeof themes[number];
-
-export const getParams = <T>(location: Location): T | undefined => {
-  const params = queryString.parse(location.search) as unknown;
-  return params ? (params as T) : undefined;
-};
-
 export interface Point {
   x: number;
   y: number;
@@ -27,6 +7,9 @@ export interface LineCoords {
   a: Point;
   b: Point;
 }
+
+export const lowerBounds = (d: number, factor: number) => d * factor * -1;
+export const upperBounds = (d: number, factor: number) => d * factor;
 
 export const degree2radian = (a: number): number => a * 0.017453292519;
 export const calculateX = (x: number, l: number, a: number): number =>
@@ -53,22 +36,22 @@ export const createLine = (
 export const randomBetween = (min: number, max: number): number =>
   Math.round(Math.random() * max) + min;
 
-function lineIntersection(
+const lineIntersection = (
   m1: number,
   b1: number,
   m2: number,
   b2: number
-): Point {
+): Point => {
   if (m1 === m2) {
     throw new Error('parallel slopes');
   }
   const x = (b2 - b1) / (m1 - m2);
   return createPoint(x, m1 * x + b1);
-}
+};
 
-function pStr(point: Point): string {
+const pStr = (point: Point): string => {
   return `${point.x},${point.y} `;
-}
+};
 
 export function buildSpiral(
   center: Point,
@@ -193,3 +176,45 @@ export function describeArc(
     end.y,
   ].join(' ');
 }
+
+export const addUnit = (val: number, unit: string) => `${val}${unit}`;
+
+export const gridIteration = (
+  rows: number,
+  cols: number,
+  block: (x: number, y: number) => void
+) => {
+  for (let y = 0; y <= rows; y++) {
+    for (let x = 0; x <= cols; x++) {
+      block(x, y);
+    }
+  }
+};
+
+export const sunRays = (
+  center: Point,
+  length: number,
+  count: number,
+  angleStart: number = 0,
+  angleEnd: number = 360
+) => {
+  const angleLength = angleEnd - angleStart;
+  const angleStep = Math.ceil(angleLength / count);
+  return [...new Array(count)].map((v, i) =>
+    createLine(center, length, angleStep * i)
+  );
+};
+
+export const concentricCubes = (
+  center: Point,
+  min: number,
+  max: number,
+  count: number
+) => {
+  const diff = max - min;
+  const step = Math.ceil(diff / count);
+  return [...new Array(count)].map((v, i) => ({
+    center,
+    size: step + step * i,
+  }));
+};
