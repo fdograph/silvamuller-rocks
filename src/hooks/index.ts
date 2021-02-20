@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useLayoutEffect, useState } from 'react';
 
 interface WindowSize {
   width: number;
@@ -18,7 +18,7 @@ export const useWindowSize = () => {
     });
   }, []);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     window.addEventListener('resize', onResize);
     return () => {
       window.removeEventListener('resize', onResize);

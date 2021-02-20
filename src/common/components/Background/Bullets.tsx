@@ -71,7 +71,13 @@ const renderContent = (width: number, height: number) => {
       const rays = buildRays(target, distance, length, angle);
 
       return rays.map((ray) => (
-        <line x1={target.x} y1={target.y} x2={target.x} y2={target.y}>
+        <line
+          key={`${target.x}:${target.y}`}
+          x1={target.x}
+          y1={target.y}
+          x2={target.x}
+          y2={target.y}
+        >
           <animate
             repeatCount="indefinite"
             attributeName="x1"
