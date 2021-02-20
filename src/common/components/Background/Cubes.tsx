@@ -1,6 +1,11 @@
 import React, { useMemo } from 'react';
 import { useWindowSize } from '../../../hooks';
-import { addUnit, concentricCubes, createPoint } from '../../logic/geometry';
+import {
+  addUnit,
+  concentricCubes,
+  createPoint,
+  randomBetween,
+} from '../../logic/geometry';
 import styled, { keyframes } from 'styled-components';
 
 const cubeSpin = keyframes`
@@ -17,6 +22,7 @@ interface CssVars {
   y: string;
   speed: string;
   size: string;
+  delay: string;
 }
 
 const Wrapper = styled.div`
@@ -33,7 +39,7 @@ const Cube = styled.div<{ vars: CssVars }>`
   --cx: ${(props) => props.vars.x};
   --cy: ${(props) => props.vars.y};
   --cube-size: ${(props) => props.vars.size};
-  --delay: 15ms;
+  --delay: ${(props) => props.vars.delay};
   --speed: ${(props) => props.vars.speed};
   position: absolute;
   top: calc(var(--cy) - (var(--cube-size) / 2));
@@ -57,7 +63,6 @@ const Cube = styled.div<{ vars: CssVars }>`
     position: absolute;
     width: var(--cube-size);
     height: var(--cube-size);
-    backface-visibility: visible;
     border: 1px solid var(--secondary-color);
     border-radius: 100%;
   }
@@ -84,17 +89,19 @@ const Cube = styled.div<{ vars: CssVars }>`
 
 const renderContent = (width: number, height: number) => {
   const center = createPoint((width / 3) * 2, (height / 3) * 2);
-  const minSize = width * 0.035;
+  const minSize = width * 0.03;
   const maxSize = Math.sqrt(Math.pow(width, 2) + Math.pow(height, 2));
-  const cubes = concentricCubes(center, minSize, maxSize, 8);
+  const cubes = concentricCubes(center, minSize, maxSize, 5);
   return cubes.map((cube, i) => (
     <Cube
+      key={`${cube.center.x}:${cube.center.y}:${cube.size}`}
       className="cube"
       vars={{
         x: addUnit(cube.center.x, 'px'),
         y: addUnit(cube.center.y, 'px'),
         size: addUnit(cube.size, 'px'),
         speed: addUnit((i + 1) * 5000, 'ms'),
+        delay: addUnit(randomBetween(15, (i + 1) * 5000 * -1), 'ms'),
       }}
     >
       <div className="side front" />
@@ -107,11 +114,11 @@ const renderContent = (width: number, height: number) => {
   ));
 };
 
-const Waves: React.FC = () => {
+const Cubes: React.FC = () => {
   const { width, height } = useWindowSize();
   const content = useMemo(() => renderContent(width, height), [height, width]);
 
   return <Wrapper>{content}</Wrapper>;
 };
 
-export default Waves;
+export default Cubes;

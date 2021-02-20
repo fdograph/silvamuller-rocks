@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react';
+import React, { useMemo } from 'react';
 import { useWindowSize } from '../../../hooks';
 import { addUnit } from '../../logic/geometry';
 import styled, { keyframes } from 'styled-components';

@@ -35,8 +35,8 @@ const defaultThemeConf = {
     secondary: 'hsl(200, 50%, 30%)',
   },
   cubes: {
-    primary: 'hsl(140, 100%, 17%)',
-    secondary: 'hsl(0, 0%, 10%)',
+    primary: 'hsl(180, 20%, 15%)',
+    secondary: 'hsl(60, 100%, 65%)',
   },
 };
 
