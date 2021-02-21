@@ -70,9 +70,9 @@ const renderContent = (width: number, height: number) => {
       const angle = 45;
       const rays = buildRays(target, distance, length, angle);
 
-      return rays.map((ray) => (
+      return rays.map((ray, i) => (
         <line
-          key={`${target.x}:${target.y}`}
+          key={`${i}:${target.x}:${target.y}:${ray.a.x}:${ray.a.x}:${ray.b.x}:${ray.b.x}`}
           x1={target.x}
           y1={target.y}
           x2={target.x}
