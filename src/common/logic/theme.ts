@@ -38,6 +38,10 @@ const defaultThemeConf = {
     primary: 'hsl(180, 20%, 15%)',
     secondary: 'hsl(60, 100%, 65%)',
   },
+  squareDance: {
+    primary: 'hsl(175, 100%, 50%)',
+    secondary: 'hsl(15, 100%, 65%)',
+  },
 };
 
 export type ThemeName = keyof typeof defaultThemeConf;

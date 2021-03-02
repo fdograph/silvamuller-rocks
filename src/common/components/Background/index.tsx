@@ -8,6 +8,7 @@ import Waves from './Waves';
 import Bullets from './Bullets';
 import Solar from './Solar';
 import Cubes from './Cubes';
+import SquareDance from './SquareDance';
 
 const BgWrapper = styled.div`
   position: absolute;
@@ -48,6 +49,8 @@ const renderAnimation = (theme: ThemeName) => {
       return <Solar />;
     case 'cubes':
       return <Cubes />;
+    case 'squareDance':
+      return <SquareDance />;
     default:
       return <DarkLines />;
   }
