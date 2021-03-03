@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react';
 import classNames from 'classnames';
 import { useWindowSize } from '../../../hooks';
-import { addUnit, gridIteration } from '../../logic/geometry';
+import { addUnit, gridIteration, randomBetween } from '../../logic/geometry';
 import styled, { keyframes } from 'styled-components';
 
 const rotate = keyframes`
@@ -48,6 +48,8 @@ const renderContent = (width: number, height: number) => {
   const xShift = (size * xCount - width) / 2;
   const YShift = (size * yCount - height) / 2;
 
+  const duration = 10000;
+
   const grid: JSX.Element[] = [];
   gridIteration(yCount, xCount, (col, row) => {
     const isEvenCol = col % 2 !== 0;
@@ -65,6 +67,8 @@ const renderContent = (width: number, height: number) => {
     const cx = x + size / 2;
     const cy = y + size / 2;
 
+    const delay = randomBetween(0, duration / 2);
+
     grid.push(
       <rect
         className={classNames({
@@ -77,6 +81,7 @@ const renderContent = (width: number, height: number) => {
         height={size}
         style={{
           transformOrigin: `${addUnit(cx, 'px')} ${addUnit(cy, 'px')}`,
+          animationDelay: addUnit(delay, 'ms'),
         }}
       />
     );
