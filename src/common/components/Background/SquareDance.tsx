@@ -1,7 +1,12 @@
 import React, { useMemo } from 'react';
 import classNames from 'classnames';
 import { useWindowSize } from '../../../hooks';
-import { addUnit, gridIteration, randomBetween } from '../../logic/geometry';
+import {
+  addUnit,
+  createPoint,
+  gridIteration,
+  randomBetween,
+} from '../../logic/geometry';
 import styled, { keyframes } from 'styled-components';
 
 const rotate = keyframes`
@@ -25,7 +30,7 @@ const Svg = styled.svg`
     stroke: var(--secondary-color);
     animation-name: ${rotate};
     animation-duration: 10000ms;
-    animation-timing-function: linear;
+    animation-timing-function: ease;
     animation-iteration-count: infinite;
     animation-direction: normal;
     animation-fill-mode: both;
@@ -64,10 +69,12 @@ const renderContent = (width: number, height: number) => {
     const x = size * col - xShift;
     const y = size * row - YShift;
 
-    const cx = x + size / 2;
-    const cy = y + size / 2;
-
     const delay = randomBetween(0, duration / 2);
+    const speed = randomBetween(duration / 2, duration * 2);
+
+    const squareSize = size;
+    const center = createPoint(x + squareSize / 2, y + squareSize / 2);
+    // const center = createPoint(x + squareSize / 2, y + squareSize / 2);
 
     grid.push(
       <rect
@@ -77,11 +84,15 @@ const renderContent = (width: number, height: number) => {
         key={`${x}:${y}`}
         x={x}
         y={y}
-        width={size}
-        height={size}
+        width={squareSize}
+        height={squareSize}
         style={{
-          transformOrigin: `${addUnit(cx, 'px')} ${addUnit(cy, 'px')}`,
+          transformOrigin: `${addUnit(center.x, 'px')} ${addUnit(
+            center.y,
+            'px'
+          )}`,
           animationDelay: addUnit(delay, 'ms'),
+          animationDuration: addUnit(speed, 'ms'),
         }}
       />
     );
