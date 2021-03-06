@@ -3,8 +3,10 @@ import classNames from 'classnames';
 import { useWindowSize } from '../../../hooks';
 import {
   addUnit,
+  centerOfSquare,
   createPoint,
   gridIteration,
+  isEven,
   randomBetween,
 } from '../../logic/geometry';
 import styled, { keyframes } from 'styled-components';
@@ -42,7 +44,6 @@ const renderContent = (width: number, height: number) => {
   const vMax = isVertical ? height : width;
   const vMin = isVertical ? width : height;
 
-  // const size = 320 / 3;
   const size = 100;
   const maxCount = Math.ceil(vMax / size);
   const minCount = Math.ceil(vMin / size);
@@ -57,14 +58,10 @@ const renderContent = (width: number, height: number) => {
 
   const grid: JSX.Element[] = [];
   gridIteration(yCount, xCount, (col, row) => {
-    const isEvenCol = col % 2 !== 0;
-    const isEvenRow = row % 2 !== 0;
+    const isEvenCol = isEven(col);
+    const isEvenRow = isEven(row);
 
-    let isMarked = false;
-
-    if ((isEvenRow && isEvenCol) || (!isEvenRow && !isEvenCol)) {
-      isMarked = true;
-    }
+    const isMarked = (isEvenRow && isEvenCol) || (!isEvenRow && !isEvenCol);
 
     const x = size * col - xShift;
     const y = size * row - YShift;
@@ -73,8 +70,7 @@ const renderContent = (width: number, height: number) => {
     const speed = randomBetween(duration / 2, duration * 2);
 
     const squareSize = size;
-    const center = createPoint(x + squareSize / 2, y + squareSize / 2);
-    // const center = createPoint(x + squareSize / 2, y + squareSize / 2);
+    const center = centerOfSquare(x, y, squareSize);
 
     grid.push(
       <rect
@@ -101,11 +97,11 @@ const renderContent = (width: number, height: number) => {
   return grid;
 };
 
-const Waves: React.FC = () => {
+const SquareDance: React.FC = () => {
   const { width, height } = useWindowSize();
   const content = useMemo(() => renderContent(width, height), [height, width]);
 
   return <Svg>{content}</Svg>;
 };
 
-export default Waves;
+export default SquareDance;

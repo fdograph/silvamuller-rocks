@@ -17,6 +17,12 @@ export const calculateX = (x: number, l: number, a: number): number =>
 export const calculateY = (y: number, l: number, a: number): number =>
   y + l * Math.sin(a);
 export const createPoint = (x: number, y: number): Point => ({ x, y });
+
+export const centerOfSquare = (x: number, y: number, size: number) =>
+  createPoint(x + size / 2, y + size / 2);
+
+export const isEven = (n: number) => n % 2 !== 0;
+
 export const randomPoint = (w: number, h: number): Point =>
   createPoint(randomBetween(0, w), randomBetween(0, h));
 export const projectPoint = (point: Point, l: number, a: number): Point =>
