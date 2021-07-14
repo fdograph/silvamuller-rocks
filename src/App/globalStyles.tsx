@@ -26,6 +26,7 @@ export const GlobalStyle = createGlobalStyle<Partial<ThemeColors>>`
     
     background: var(--primary-color);
     color: var(--secondary-color);
+    overflow: hidden;
     
     display: flex;
     flex-direction: column;

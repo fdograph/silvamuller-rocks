@@ -42,6 +42,12 @@ export const createLine = (
 export const randomBetween = (min: number, max: number): number =>
   Math.round(Math.random() * max) + min;
 
+export const randomRange = (min: number, max: number): number =>
+  Math.random() * (max - min) + min;
+
+export const getHypotenuse = (a: number, b: number) =>
+  Math.sqrt(Math.pow(a, 2) + Math.pow(b, 2));
+
 const lineIntersection = (
   m1: number,
   b1: number,

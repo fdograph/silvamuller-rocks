@@ -4,7 +4,6 @@ import { useWindowSize } from '../../../hooks';
 import {
   addUnit,
   centerOfSquare,
-  createPoint,
   gridIteration,
   isEven,
   randomBetween,

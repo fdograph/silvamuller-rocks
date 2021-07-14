@@ -42,6 +42,10 @@ const defaultThemeConf = {
     primary: 'hsl(175, 100%, 50%)',
     secondary: 'hsl(15, 100%, 65%)',
   },
+  bubbles: {
+    primary: 'hsl(65, 100%, 50%)',
+    secondary: 'hsl(275, 100%, 50%)',
+  },
 };
 
 export type ThemeName = keyof typeof defaultThemeConf;
