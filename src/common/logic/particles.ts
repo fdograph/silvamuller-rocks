@@ -15,8 +15,8 @@ export class Particle {
   private y: number;
   private baseX: number;
   private baseY: number;
-  private angle: number;
-  private density: number;
+  private readonly angle: number;
+  private readonly density: number;
   private destine: Point;
 
   constructor(x: number, y: number) {
@@ -33,10 +33,14 @@ export class Particle {
   }
 
   public draw(
-    ctx: CanvasRenderingContext2D,
+    ctx: CanvasRenderingContext2D | null,
     mouseX: number,
     mouseY: number
   ): void {
+    if (ctx === null) {
+      return;
+    }
+
     this.update(mouseX, mouseY);
 
     ctx.beginPath();
@@ -125,15 +129,16 @@ export class ParticleOrchestrator {
     this.ctx.fillStyle = 'hsl(65, 100%, 50%)';
     this.ctx.fillRect(0, 0, this.width, this.height);
 
-    this.particles = this.particles.filter((p) => !!p.radius);
-
+    const filteredParticles: Particle[] = [];
     this.particles.forEach((p, i) => {
-      p.draw(
-        this.ctx as CanvasRenderingContext2D,
-        this.mouseLoc.x,
-        this.mouseLoc.y
-      );
+      p.draw(this.ctx, this.mouseLoc.x, this.mouseLoc.y);
+
+      if (p.radius > 0) {
+        filteredParticles.push(p);
+      }
     });
+
+    this.particles = filteredParticles;
   }
 
   public init(width: number, height: number, canvas: HTMLCanvasElement): void {
@@ -154,11 +159,12 @@ export class ParticleOrchestrator {
 
     this.startAnimationLoop();
 
-    console.log('CANVAS FINISHED INITIALIZE');
+    console.log('CANVAS INITIALIZED');
   }
 
   public reset(): void {
     this.removeListeners();
     this.stopAnimationLoop();
+    console.log('CANVAS RESET');
   }
 }
