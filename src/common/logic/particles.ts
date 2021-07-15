@@ -94,10 +94,10 @@ export class ParticleOrchestrator {
       event.y * this.pixelRatio
     );
 
-    let particleCount = 15;
-    while (particleCount--) {
-      this.particles.push(new Particle(this.mouseLoc.x, this.mouseLoc.y));
-    }
+    const newParticles = [...new Array(15)].map(
+      () => new Particle(this.mouseLoc.x, this.mouseLoc.y)
+    );
+    this.particles = this.particles.concat(newParticles);
   }
 
   private removeListeners(): void {
@@ -141,6 +141,19 @@ export class ParticleOrchestrator {
     this.particles = filteredParticles;
   }
 
+  public generateInitialParticles() {
+    const count = 500;
+    const particles = [...new Array(count)].map(() => {
+      const center = createPoint(
+        randomRange(0, this.width),
+        randomRange(0, this.height)
+      );
+      return new Particle(center.x, center.y);
+    });
+
+    this.particles = this.particles.concat(particles);
+  }
+
   public init(width: number, height: number, canvas: HTMLCanvasElement): void {
     this.width = width * this.pixelRatio;
     this.height = height * this.pixelRatio;
@@ -156,6 +169,10 @@ export class ParticleOrchestrator {
 
     this.reset();
     this.addListeners();
+
+    this.generateInitialParticles();
+
+    console.log('Initial particle count:', { count: this.particles.length });
 
     this.startAnimationLoop();
 
