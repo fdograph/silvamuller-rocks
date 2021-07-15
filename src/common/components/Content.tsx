@@ -21,6 +21,7 @@ const Wrapper = styled.div`
 
   h1,
   h2,
+  h3,
   .socials {
     animation-name: ${appear};
     animation-duration: 500ms;
@@ -44,8 +45,13 @@ const Wrapper = styled.div`
     animation-delay: 500ms;
   }
 
-  .socials {
+  h3 {
+    font-weight: 400;
     animation-delay: 700ms;
+  }
+
+  .socials {
+    animation-delay: 1000ms;
   }
 `;
 
@@ -63,11 +69,10 @@ export const Content: React.FC = () => {
       <h1>
         Fernando
         <br />
-        Silva
-        <br />
-        Müller
+        Silva Müller
       </h1>
       <h2>Fullstack developer</h2>
+      <h3>Creative web artisan</h3>
 
       <Socials className="socials">
         <IconLink
