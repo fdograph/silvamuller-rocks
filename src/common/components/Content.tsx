@@ -72,7 +72,7 @@ export const Content: React.FC = () => {
         Silva Müller
       </h1>
       <h2>Fullstack developer</h2>
-      <h3>Creative web artisan</h3>
+      <h3>Web artisan</h3>
 
       <Socials className="socials">
         <IconLink
